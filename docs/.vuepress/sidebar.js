@@ -4,7 +4,6 @@ module.exports = [
         "prefix": "/sop/GMP/",
         "link": "/sop/GMP/",
         "children": [
-            "/sop/GMP/README.md",
             {
                 "text": "Eu",
                 "prefix": "/sop/GMP/eu/",
@@ -14,6 +13,7 @@ module.exports = [
                     "/sop/GMP/eu/SOP-DAP-VIEN.md"
                 ]
             },
+            "/sop/GMP/README.md",
             {
                 "text": "Who",
                 "prefix": "/sop/GMP/who/",
