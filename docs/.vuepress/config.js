@@ -5,7 +5,7 @@ import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 import sidebar from './sidebar';
 
 export default defineUserConfig({
-    base: process.env.NODE_ENV === 'production' ? '/sop-manager/' : '/',
+    base: process.env.NODE_ENV === 'production' ? '/sop-management-system/' : '/',
     bundler: viteBundler(),
     theme: defaultTheme({
         navbar: [
