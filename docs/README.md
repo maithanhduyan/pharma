@@ -1,33 +1,109 @@
-# SOP Managerment System
+# SOP Management System
 
-- Workflow
+- Workflow Tổng Quan
 
 ```mermaid
 
 ---
-title: Git Flow cho Quản lý SOP
+title:
 ---
 
 gitGraph
-   commit id: "1" tag: "Initial commit on main"
+   commit id: "1" tag: "Nhánh main"
    branch create-sop
+   branch validate
+   branch re-validate
+   branch release
+
    checkout create-sop
-   commit id: "2" tag: "Initial commit on create-sop"
-   branch validate/sop1
-   checkout validate/sop1
-   commit id: "3" tag: "Create SOP (make-sop)"
-   commit id: "4" tag: "Refine SOP (make-sop)"
-   checkout create-sop
-   merge validate/sop1 tag: "Validate SOP"
+   commit id: "2" tag: "Viết SOP"
+
+   checkout validate
+   merge create-sop
+   commit id: "3" tag: "Thẩm định - Đo Lường - Đánh Giá SOP"
+
+   checkout release
+   merge validate
+   commit  id: "4" tag: "Phê duyệt - Ban Hành"
    checkout main
-   merge create-sop tag: "Issue SOPs"
-   branch validate/sop1-v2
-   checkout validate/sop1-v2
-   commit id: "5" tag: "Start revalidation (revalidate)"
-   commit id: "6" tag: "Update SOP (revalidate)"
+   merge release tag: "v1.0"
+   commit
+
    checkout create-sop
-   merge validate/sop1-v2 tag: "re-validate SOP"
+   merge main
+   commit id:"5" tag: "Viết lại SOP"
+
+   checkout re-validate
+   merge create-sop
+   commit id:"6" tag:"Tái Thẩm Định"
+
+   checkout release
+   merge re-validate
+   commit id:"7" tag:"Phê Duyệt - Ban Hành"
+
    checkout main
-   merge create-sop tag: "Re-issue SOPs"
+   merge release tag:"v2.0"
+
+```
+
+- Qui trình tạo SOP - Thẩm Định - Ban Hành
+
+```mermaid
+---
+title:
+---
+
+gitGraph
+   commit tag: "từ nhánh main"
+   commit id: "1"
+   branch create-sop
+   branch re-validate
+   branch validate
+   branch release
+
+   checkout create-sop
+   commit id: "2" tag: "Từ nhánh create-sop dùng tạo ra SOP"
+
+   checkout validate
+   merge create-sop
+   commit id: "3" tag: "Thẩm định - Đo Lường - Đánh Giá SOP"
+
+   checkout release
+   merge validate
+   commit  id: "4" tag: "Phê duyệt - Ban Hành"
+   checkout main
+   merge release tag: "v1.0"
+
+
+```
+
+- Qui trình Tái Thẩm Định - Ban Hành
+
+```mermaid
+---
+title:
+---
+
+gitGraph
+   commit id: "1"
+   branch create-sop
+   branch re-validate
+   branch validate
+   branch release
+
+
+   checkout create-sop
+   commit id: "2" tag:"Viết lại SOP"
+
+   checkout re-validate
+   merge create-sop
+   commit id: "3" tag: "Tái Thẩm Định"
+
+   checkout release
+   merge re-validate
+   commit id: "4" tag:"Phê Duyệt - Tái Ban Hành"
+   checkout main
+   merge release tag: "v2.0"
+
 
 ```
